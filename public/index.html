@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>eDM Content Image Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+    />
+    <style>
+      body {
+        font-family: Roboto, "Microsoft JhengHei";
+      }
+
+      .bg {
+        background-color: rgba(33, 31, 32, 0.15);
+      }
+
+      .search-box {
+        padding: 2em;
+        background-color: rgba(200, 202, 216, 0.30);
+        border-radius: 20px;
+      }
+
+      .title {
+        color: #FFFFFF;
+      }
+
+      .bg-img {
+        background-image: url("image/zac-ong-394558-unsplash.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #000000;
+      }
+
+      .footer {
+        background-color: #00000000;
+        padding: 0.5rem 0.5rem 0.5rem;
+        color: #FFFFFF;
+      }
+    </style>
+  </head>
+ <body class="bg-img">
+    <section class="hero is-fullheight bg">
+      <div class="hero-body">
+        <div class="container search-box">
+          <h1 class="title">Website Content Screenshot Generator</h1>
+          <form action="/convert" method="POST" target="_blank">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="url"
+                  id="url"
+                  name="url"
+                  size="100"
+                  placeholder="Enter the URL of the page"
+                />
+              </div>
+            </div>
+
+            <div class="control">
+              <button class="button is-link" type="submit">Generate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="is-pulled-right">
+          Photo by <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@zacong?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Zac Ong"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Zac Ong</span></a>
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>
