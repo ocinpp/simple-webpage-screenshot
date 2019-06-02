@@ -12,18 +12,13 @@ app.use(helmet());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-// let browser = null;
-
-// (async () => {
-//     browser = await puppeteer.launch({headless: true});
-// })();
-
 async function generateScreenshotFile(url) {
   console.log("Generating screenshot file...");
 
   let browser, page, filePath;
 
   try {
+    // new browser for each call
     browser = await puppeteer.launch({ headless: true });
 
     // open new page
@@ -75,6 +70,7 @@ app.post("/convert", async(req, res) => {
     });
 
     if (!validUrl) {
+      res.status(400);
       res.send("Please input a valid URL!");
       return;
     }
