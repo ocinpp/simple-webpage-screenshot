@@ -35,5 +35,13 @@ Using Express and Puppeteer to take screenshot of an URL and produce the image
 
 [Piexlmatch](https://github.com/mapbox/pixelmatch) is used to compare the pixels of the screenshot and the reference screenshot
 
+When running **Jest** with **--coverage**, error will be thrown by Puppeteer
+
+```txt
+Error: Evaluation failed: ReferenceError: cov_2109gx1kfb is not defined
+  at __puppeteer_evaluation_script__:3:7
+  at ExecutionContext.evaluateHandle (D:\development\nodejs\simple-webpage-screenshot\node_modules\puppeteer\lib\ExecutionContext.js:121:13)
+```
+
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot?ref=badge_large)
