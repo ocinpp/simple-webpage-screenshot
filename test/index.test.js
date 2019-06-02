@@ -4,6 +4,7 @@ const pixelmatch = require("pixelmatch");
 const PNG = require("pngjs").PNG;
 
 const REF_SCREENCAPTURE = "./test/example-com-sample.png";
+const REF_URL = "https://example.com";
 
 let server;
 
@@ -28,56 +29,50 @@ describe("Loading express", () => {
   });
 });
 
-const parsePNG = (response) => {
+const parsePNG = response => {
   return new Promise((resolve, reject) => {
-    // parse the response body to a PNG
-    const png = new PNG().parse(response.body);
-    resolve(png);
+    // parse the response body to a PNG and resolve the promise in the callback
+    new PNG().parse(response.body, (error, data) => {
+      resolve(data);
+    });
   });
 };
 
-describe("Check capture of https://example.com", () => {
-  test("Responds to /convert", async () => {
+describe("Checking capture", () => {
+  test(`Responds to /convert with input as ${REF_URL}`, async () => {
     expect.assertions(3);
     await request(server)
       .post("/convert")
       .type("form")
-      .send({ url: "https://example.com/" })
+      .send({ url: REF_URL })
       .expect(200)
       .expect("Content-Type", "image/png")
       .expect("X-Sent", "true")
       .then(parsePNG)
       .then(screenCapture => {
-        return new Promise((resolve, reject) => {
-          const doneReading = () => {
-            expect(screenCapture.width).toBe(expectedCapture.width);
-            expect(screenCapture.height).toBe(expectedCapture.height);
+        // parse the prepared reference screenshot
+        const expectedCaptureData = fs.readFileSync(REF_SCREENCAPTURE);
+        const expectedCapture = PNG.sync.read(expectedCaptureData);
 
-            // call pixelmatch to check the pixel difference
-            const diffPixels = pixelmatch(
-              screenCapture.data,
-              expectedCapture.data,
-              null,
-              screenCapture.width,
-              screenCapture.height,
-              { threshold: 0.1 }
-            );
+        expect(screenCapture.width).toBe(expectedCapture.width);
+        expect(screenCapture.height).toBe(expectedCapture.height);
 
-            expect(diffPixels).toBe(0);
-            resolve();
-          };
+        // call pixelmatch to check the pixel difference
+        const diffPixels = pixelmatch(
+          screenCapture.data,
+          expectedCapture.data,
+          null,
+          screenCapture.width,
+          screenCapture.height,
+          { threshold: 0.1 }
+        );
 
-          // parse the prepared reference screenshot
-          const expectedCapture = fs
-            .createReadStream(REF_SCREENCAPTURE)
-            .pipe(new PNG())
-            .on("parsed", doneReading);
-        });
+        expect(diffPixels).toBe(0);
       });
   });
 });
 
-describe("Go to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
+describe("Going to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
   test("500 cannot resolve domain", async () => {
     await request(server)
       .post("/convert")
@@ -86,7 +81,25 @@ describe("Go to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
       .expect(500)
       .expect("Content-Type", "text/html; charset=utf-8")
       .then(response => {
-        expect(response.text).toBe('Error generating screenshot: net::ERR_NAME_NOT_RESOLVED at http://xxxxxxxxxxxxxxyyyzzz.com');
-      })
+        expect(response.text).toBe(
+          "Error generating screenshot: net::ERR_NAME_NOT_RESOLVED at http://xxxxxxxxxxxxxxyyyzzz.com"
+        );
+      });
+  });
+});
+
+describe("Going to invalid URL", () => {
+  test("400 invalid URL", async () => {
+    await request(server)
+      .post("/convert")
+      .type("form")
+      .send({ url: "http:///sss" })
+      .expect(400)
+      .expect("Content-Type", "text/html; charset=utf-8")
+      .then(response => {
+        expect(response.text).toBe(
+          "Please input a valid URL!"
+        );
+      });
   });
 });
