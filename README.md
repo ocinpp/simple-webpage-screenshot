@@ -31,5 +31,9 @@ Using Express and Puppeteer to take screenshot of an URL and produce the image
 1. A screenshot (width: 800px) is produced
 1. The screenshot can also be found in the **capture** directory
 
+## Testing
+
+[Piexlmatch](https://github.com/mapbox/pixelmatch) is used to compare the pixels of the screenshot and the reference screenshot
+
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot?ref=badge_large)
