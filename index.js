@@ -26,7 +26,7 @@ async function generateScreenshotFile(url) {
     page.on("console", msg => console.log(`Page Console: ${msg.text()}`));
 
     // set view port
-    await page.setViewport({ width: 800, height: 1000 });
+    await page.setViewport({ width: 980, height: 1000 });
 
     // wait until network idle
     await page.goto(url, { waitUntil: "networkidle2" });
