@@ -39,6 +39,7 @@ const parsePNG = response => {
 };
 
 describe("Checking capture", () => {
+  // set the timeout to 60 seconds
   test(`Responds to /convert with input as ${REF_URL}`, async () => {
     expect.assertions(3);
     await request(server)
@@ -50,7 +51,7 @@ describe("Checking capture", () => {
       .expect("X-Sent", "true")
       .then(parsePNG)
       .then(screenCapture => {
-        // parse the prepared reference screenshot
+        // parse the prepared reference screenshot using sync API
         const expectedCaptureData = fs.readFileSync(REF_SCREENCAPTURE);
         const expectedCapture = PNG.sync.read(expectedCaptureData);
 
@@ -69,10 +70,11 @@ describe("Checking capture", () => {
 
         expect(diffPixels).toBe(0);
       });
-  });
+  }, 60000);
 });
 
 describe("Going to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
+  // set the timeout to 60 seconds
   test("500 cannot resolve domain", async () => {
     await request(server)
       .post("/convert")
@@ -85,10 +87,11 @@ describe("Going to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
           "Error generating screenshot: net::ERR_NAME_NOT_RESOLVED at http://xxxxxxxxxxxxxxyyyzzz.com"
         );
       });
-  });
+  }, 60000);
 });
 
 describe("Going to invalid URL", () => {
+  // set the timeout to 60 seconds
   test("400 invalid URL", async () => {
     await request(server)
       .post("/convert")
@@ -101,5 +104,5 @@ describe("Going to invalid URL", () => {
           "Please input a valid URL!"
         );
       });
-  });
+  }, 60000);
 });
