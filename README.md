@@ -1,7 +1,7 @@
 # Simple Webpage Screenshot
+
 [![Known Vulnerabilities](https://snyk.io/test/github/ocinpp/simple-webpage-screenshot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/ocinpp/simple-webpage-screenshot?targetFile=package.json)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot?ref=badge_shield)
-
 
 Using Express and Puppeteer to take screenshot of an URL and produce the image
 
@@ -33,9 +33,15 @@ Using Express and Puppeteer to take screenshot of an URL and produce the image
 
 ## Testing
 
-[Piexlmatch](https://github.com/mapbox/pixelmatch) is used to compare the pixels of the screenshot and the reference screenshot
+[Piexlmatch](https://github.com/mapbox/pixelmatch) is used to compare the pixels of the screenshot and the reference screenshot.
 
-When running **Jest** with **--coverage**, error will be thrown by Puppeteer
+To run the tests, type the below command:
+
+```bash
+npm test
+```
+
+When running **Jest** with **--coverage**, error will be thrown by Puppeteer.
 
 ```txt
 Error: Evaluation failed: ReferenceError: cov_2109gx1kfb is not defined
@@ -44,4 +50,5 @@ Error: Evaluation failed: ReferenceError: cov_2109gx1kfb is not defined
 ```
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot?ref=badge_large)
