@@ -9,9 +9,14 @@
     "puppeteer": "^1.17.0",
     "validator": "^11.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.4.0",
+    "supertest": "^4.0.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
