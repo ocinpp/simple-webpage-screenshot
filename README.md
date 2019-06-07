@@ -9,6 +9,17 @@ Using Express and Puppeteer to take screenshot of an URL and produce the image
 
 1. Node.js
 
+## Libraries
+
+1. [Puppeteer](https://github.com/GoogleChrome/puppeteer)
+1. [express](https://github.com/expressjs/express/)
+1. [Helmet](https://github.com/helmetjs/helmet)
+1. [validator](https://github.com/chriso/validator.js)
+1. [Jest](https://github.com/facebook/jest)
+1. [Pixelmatch](https://github.com/mapbox/pixelmatch)
+1. [pngjs](https://github.com/lukeapage/pngjs)
+1. [SuperTest](https://github.com/visionmedia/supertest)
+
 ## How to use
 
 1. Clone the repository
@@ -48,6 +59,10 @@ Error: Evaluation failed: ReferenceError: cov_2109gx1kfb is not defined
   at __puppeteer_evaluation_script__:3:7
   at ExecutionContext.evaluateHandle (D:\development\nodejs\simple-webpage-screenshot\node_modules\puppeteer\lib\ExecutionContext.js:121:13)
 ```
+
+## Reference
+
+[https://jestjs.io/docs/en/getting-started.html](https://jestjs.io/docs/en/getting-started.html)
 
 ## License
 
