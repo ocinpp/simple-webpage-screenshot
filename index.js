@@ -51,17 +51,21 @@ async function generateScreenshotFile(url) {
     // generate full page screenshot
     await page.screenshot({ path: `${filePath}`, fullPage: true });
   } finally {
-    // close the page
-    await page.close();
+    try {
+      // close the page
+      await page.close();
 
-    // close browser
-    await browser.close();
+      // close browser
+      await browser.close();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return filePath;
 }
 
-app.post("/convert", async(req, res) => {
+app.post("/convert", async(req, res, next) => {
   try {
     // input validation
     const inputUrl = req.body["url"];
