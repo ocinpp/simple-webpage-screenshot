@@ -60,6 +60,28 @@ Error: Evaluation failed: ReferenceError: cov_2109gx1kfb is not defined
   at ExecutionContext.evaluateHandle (D:\development\nodejs\simple-webpage-screenshot\node_modules\puppeteer\lib\ExecutionContext.js:121:13)
 ```
 
+## Docker
+
+Build the image
+
+```bash
+docker build -t <tag> .
+```
+
+Start the container, bind port 3000 of the container to port 80
+
+```bash
+docker run -p 80:3000 -d <tag>
+```
+
+Visit the page at http://localhost
+
+Stop the container
+
+```bash
+docker stop <container>
+```
+
 ## Reference
 
 [https://jestjs.io/docs/en/getting-started.html](https://jestjs.io/docs/en/getting-started.html)
