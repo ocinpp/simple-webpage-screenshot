@@ -36,6 +36,7 @@ COPY package*.json ./
 USER node
 
 # run npm ci to install a project with a clean slate
+# https://docs.npmjs.com/cli/ci
 RUN npm ci
 
 # copy your application code with the appropriate permissions to the application directory on the container
@@ -44,5 +45,5 @@ COPY --chown=node:node . .
 # expose the port 8080
 EXPOSE 3000
 
-# start node app.js
+# start node index.js
 CMD [ "node", "index.js" ]
