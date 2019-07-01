@@ -19,7 +19,9 @@ async function generateScreenshotFile(url) {
 
   try {
     // new browser for each call
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: true ,
+      args: ['--no-sandbox', '--disable-dev-shm-usage']
+    });
 
     // open new page
     page = await browser.newPage();
