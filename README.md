@@ -82,7 +82,28 @@ Stop the container
 docker stop <container>
 ```
 
+## Notes
+
+At this moment, we need to add the **--no-sandbox** argument to start Puppeteer to fix the below.
+
+```
+No usable sandbox! Update your kernel or see https://chromium.googlesource.com/chromium/src/+/master/docs/linux_suid_sandbox_development.md for more information on developing with the SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox.
+```
+
+Also, by default, Docker runs a container with a **/dev/shm** shared memory space 64MB. This is typically too small for Chrome and will cause Chrome to crash when rendering large pages. Launch the browser with the **--disable-dev-shm-usage** flag:
+
+```javascript
+const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-dev-shm-usage']});
+```
+
+However, running without a sandbox is strongly discouraged. Consider configuring a sandbox instead.
+
+[https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
+)
+
 ## Reference
+
+[https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md)
 
 [https://jestjs.io/docs/en/getting-started.html](https://jestjs.io/docs/en/getting-started.html)
 
