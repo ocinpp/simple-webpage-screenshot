@@ -35,8 +35,8 @@ COPY package*.json ./
 # switch the user to node before running npm install
 USER node
 
-# run npm install
-RUN npm install
+# run npm ci to install a project with a clean slate
+RUN npm ci
 
 # copy your application code with the appropriate permissions to the application directory on the container
 COPY --chown=node:node . .
