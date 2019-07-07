@@ -31,7 +31,7 @@ async function generateScreenshotFile(url) {
     await page.setViewport({ width: 980, height: 1000 });
 
     // wait until network idle
-    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 120000 });
 
     // remove the first, second last and last <p>
     await page.evaluate(() => {
