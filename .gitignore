@@ -62,3 +62,9 @@ typings/
 
 # screenshot folder
 capture
+
+# true type fonts file
+*.ttc
+
+# misc files
+.DS_Store
