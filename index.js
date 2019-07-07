@@ -33,12 +33,12 @@ async function generateScreenshotFile(url) {
     // wait until network idle
     await page.goto(url, { waitUntil: "networkidle2" });
 
-    // remove the first, second and last <p>
+    // remove the first, second last and last <p>
     await page.evaluate(() => {
       try {
         elements = document.querySelectorAll("body > p");
         elements[0].remove();
-        elements[1].remove();
+        elements[elements.length - 2].remove();
         elements[elements.length - 1].remove();
       } catch (err) {
         console.error(err);
