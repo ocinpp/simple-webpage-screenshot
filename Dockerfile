@@ -14,7 +14,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && rm -rf /var/lib/apt/lists/*
 
 # copy additional true type fonts to /usr/share/fonts/truetype/
-#COPY fonts/* /usr/share/fonts/truetype/
+COPY fonts/* /usr/share/fonts/truetype/
 
 # If running Docker >= 1.13.0 use docker run's --init arg to reap zombie processes, otherwise
 # uncomment the following lines to have `dumb-init` as PID 1
@@ -46,7 +46,7 @@ RUN npm ci
 COPY --chown=node:node . .
 
 # delete fonts directory
-#RUN rm -r /home/node/app/fonts
+RUN rm -r /home/node/app/fonts
 
 # expose the port 8080
 EXPOSE 3000

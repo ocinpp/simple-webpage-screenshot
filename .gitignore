@@ -64,7 +64,7 @@ typings/
 capture
 
 # true type fonts file
-*.ttc
+#*.ttc
 
 # misc files
 .DS_Store
