@@ -48,8 +48,8 @@ COPY --chown=node:node . .
 # delete fonts directory
 RUN rm -r /home/node/app/fonts
 
-# expose the port 8080
-EXPOSE 3000
+# expose the port 80
+EXPOSE 80
 
 # start node index.js
 CMD [ "node", "index.js" ]
