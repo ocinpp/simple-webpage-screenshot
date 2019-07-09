@@ -6,7 +6,7 @@ const path = require("path");
 const helmet = require("helmet");
 const validator = require("validator");
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(helmet());
 app.use(express.static("public"));
