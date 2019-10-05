@@ -5,9 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^3.18.0",
+    "helmet": "^3.21.1",
     "puppeteer": "^1.17.0",
-    "validator": "^11.0.0"
+    "validator": "^11.0.0",
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "jest": "^24.8.0",
@@ -16,7 +17,9 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/ocinpp/simple-webpage-screenshot/issues"
   },
-  "homepage": "https://github.com/ocinpp/simple-webpage-screenshot#readme"
+  "homepage": "https://github.com/ocinpp/simple-webpage-screenshot#readme",
+  "snyk": true
 }
