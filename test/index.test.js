@@ -81,7 +81,6 @@ describe("Going to invalid domain http://xxxxxxxxxxxxxxyyyzzz.com", () => {
       .type("form")
       .send({ url: "http://xxxxxxxxxxxxxxyyyzzz.com" })
       .expect(500)
-      .expect("Content-Type", "text/html; charset=utf-8")
       .then(response => {
         expect(response.text).toBe(
           "Error generating screenshot: net::ERR_NAME_NOT_RESOLVED at http://xxxxxxxxxxxxxxyyyzzz.com"
@@ -100,9 +99,7 @@ describe("Going to invalid URL", () => {
       .expect(400)
       .expect("Content-Type", "text/html; charset=utf-8")
       .then(response => {
-        expect(response.text).toBe(
-          "Please input a valid URL!"
-        );
+        expect(response.text).toBe("Please input a valid URL!");
       });
   }, 60000);
 });
