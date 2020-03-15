@@ -2,6 +2,7 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/ocinpp/simple-webpage-screenshot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/ocinpp/simple-webpage-screenshot?targetFile=package.json)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Focinpp%2Fsimple-webpage-screenshot?ref=badge_shield)
+[![Coverage Status](https://coveralls.io/repos/github/ocinpp/simple-webpage-screenshot/badge.svg?branch=master)](https://coveralls.io/github/ocinpp/simple-webpage-screenshot?branch=master)
 
 Using Express and Puppeteer to take screenshot of an URL and produce the image
 
