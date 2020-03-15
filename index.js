@@ -19,8 +19,9 @@ async function generateScreenshotFile(url) {
 
   try {
     // new browser for each call
-    browser = await puppeteer.launch({ headless: true ,
-      args: ['--no-sandbox', '--disable-dev-shm-usage']
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-dev-shm-usage"]
     });
 
     // open new page
@@ -34,16 +35,16 @@ async function generateScreenshotFile(url) {
     await page.goto(url, { waitUntil: "networkidle2", timeout: 120000 });
 
     // remove the first, second last and last <p>
-    await page.evaluate(() => {
-      try {
+    // pass the function to evaluate as string to solve the issue with Jest
+    // https://github.com/puppeteer/puppeteer/issues/5175
+    await page.evaluate(`try {
         elements = document.querySelectorAll("body > p");
         elements[0].remove();
         elements[elements.length - 2].remove();
         elements[elements.length - 1].remove();
       } catch (err) {
         console.error(err);
-      }
-    });
+      }`);
 
     let ts = new Date().toISOString();
     ts = ts.replace(/:/g, "").replace(/\./g, "");
@@ -67,7 +68,7 @@ async function generateScreenshotFile(url) {
   return filePath;
 }
 
-app.post("/convert", async(req, res, next) => {
+app.post("/convert", async (req, res, next) => {
   try {
     // input validation
     const inputUrl = req.body["url"];
@@ -94,7 +95,7 @@ app.post("/convert", async(req, res, next) => {
       }
     };
 
-    res.sendFile(filePath, options, (err) => {
+    res.sendFile(filePath, options, err => {
       if (err) {
         next(err);
       } else {
