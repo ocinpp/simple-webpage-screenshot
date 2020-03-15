@@ -65,7 +65,7 @@ describe("Checking capture", () => {
           null,
           screenCapture.width,
           screenCapture.height,
-          { threshold: 0.3 }
+          { threshold: 0.5 }
         );
 
         expect(diffPixels).toBe(0);
