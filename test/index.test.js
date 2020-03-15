@@ -41,7 +41,7 @@ const parsePNG = response => {
 describe("Checking capture", () => {
   // set the timeout to 60 seconds
   test(`Responds to /convert with input as ${REF_URL}`, async () => {
-    expect.assertions(3);
+    expect.assertions(2);
     await request(server)
       .post("/convert")
       .type("form")
