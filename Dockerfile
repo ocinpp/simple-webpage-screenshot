@@ -2,16 +2,19 @@
 # https://hub.docker.com/_/node/
 FROM node:lts-slim
 
+# Install wget and gnupg as it is not included in the latest node:lts-slim
+RUN apt-get update && apt-get install -y ca-certificates wget gnupg
+
 # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
 # installs, work.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
-      --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+  && apt-get update \
+  && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
+  --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/*
 
 # copy additional true type fonts to /usr/share/fonts/truetype/
 COPY fonts/* /usr/share/fonts/truetype/
@@ -26,8 +29,8 @@ ENTRYPOINT ["dumb-init", "--"]
 # create the node_modules subdirectory in /home/node along with the app directory
 # set ownership on them to our node user
 RUN mkdir -p /home/node/app/capture \
-    && mkdir -p /home/node/app/node_modules \
-    && chown -R node:node /home/node/app
+  && mkdir -p /home/node/app/node_modules \
+  && chown -R node:node /home/node/app
 
 # set the working directory of the application
 WORKDIR /home/node/app
