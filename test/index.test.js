@@ -3,7 +3,7 @@ const fs = require("fs");
 const pixelmatch = require("pixelmatch");
 const PNG = require("pngjs").PNG;
 
-const REF_SCREENCAPTURE = "./test/example-com-sample.png";
+const REF_SCREENCAPTURE = "./test/example-com-sample-linux.png";
 const REF_URL = "https://example.com";
 
 let server;
