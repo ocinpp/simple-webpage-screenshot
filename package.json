@@ -18,6 +18,14 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html",
+      "lcov"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ocinpp/simple-webpage-screenshot.git"
