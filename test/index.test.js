@@ -3,13 +3,19 @@ const fs = require("fs");
 const pixelmatch = require("pixelmatch");
 const PNG = require("pngjs").PNG;
 
-const REF_SCREENCAPTURE = "./test/example-com-sample.png";
 const REF_URL = "https://example.com";
 
 let server;
+let refScreencaptureFile;
 
 beforeEach(() => {
   server = require("../index");
+  if (process.env.NODE_ENV === "ubuntu") {
+    refScreencaptureFile = "./test/example-com-sample-ubuntu.png";
+  } else {
+    refScreencaptureFile = "./test/example-com-sample.png";
+  }
+  console.log("Using screen capture file to compare:", refScreencaptureFile);
 });
 
 afterEach(() => {
@@ -41,7 +47,7 @@ const parsePNG = response => {
 describe("Checking capture", () => {
   // set the timeout to 60 seconds
   test(`Responds to /convert with input as ${REF_URL}`, async () => {
-    expect.assertions(2);
+    expect.assertions(3);
     await request(server)
       .post("/convert")
       .type("form")
@@ -52,7 +58,7 @@ describe("Checking capture", () => {
       .then(parsePNG)
       .then(screenCapture => {
         // parse the prepared reference screenshot using sync API
-        const expectedCaptureData = fs.readFileSync(REF_SCREENCAPTURE);
+        const expectedCaptureData = fs.readFileSync(refScreencaptureFile);
         const expectedCapture = PNG.sync.read(expectedCaptureData);
 
         expect(screenCapture.width).toBe(expectedCapture.width);
@@ -68,7 +74,7 @@ describe("Checking capture", () => {
           { threshold: 0.1 }
         );
 
-        // expect(diffPixels).toBe(0);
+        expect(diffPixels).toBe(0);
       });
   }, 60000);
 });
