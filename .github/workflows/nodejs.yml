@@ -27,7 +27,7 @@ jobs:
     - run: mkdir /home/runner/work/simple-webpage-screenshot/simple-webpage-screenshot/capture
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
+    - run: NODE_ENV=ubuntu npm test
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v1.0.1
       with:
