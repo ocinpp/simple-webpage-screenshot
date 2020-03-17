@@ -86,17 +86,6 @@ app.post("/convert", async (req, res, next) => {
     const filePath = await generateScreenshotFile(inputUrl);
     console.log(`File generated at ${filePath}`);
 
-    var base64 = require("node-base64-image");
-    console.log(__dirname + "/" + filePath);
-    base64.encode(
-      __dirname + "/" + filePath,
-      { local: true, string: true },
-      (err, image) => {
-        console.log(image);
-        console.error(err);
-      }
-    );
-
     var options = {
       root: __dirname,
       dotfiles: "deny",
