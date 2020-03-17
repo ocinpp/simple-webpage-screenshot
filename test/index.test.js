@@ -11,7 +11,7 @@ let refScreencaptureFile;
 beforeEach(() => {
   server = require("../index");
   if (process.env.NODE_ENV === "ubuntu") {
-    refScreencaptureFile = "./test/example-com-sample-ubuntu.png";
+    refScreencaptureFile = "./test/example-com-sample-github-ubuntu-18.04.png";
   } else {
     refScreencaptureFile = "./test/example-com-sample.png";
   }
