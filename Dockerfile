@@ -32,6 +32,9 @@ RUN mkdir -p /home/node/app/capture \
   && mkdir -p /home/node/app/node_modules \
   && chown -R node:node /home/node/app
 
+# set NODE_ENV
+ENV NODE_ENV=production
+
 # set the working directory of the application
 WORKDIR /home/node/app
 
