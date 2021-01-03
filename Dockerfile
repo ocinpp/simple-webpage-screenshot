@@ -3,7 +3,7 @@
 FROM node:lts-slim
 
 # Install wget, gnupg and curl as they are not included in the latest node:lts-slim
-RUN apt-get update && apt-get install -y ca-certificates wget gnupg curl
+RUN apt-get update && apt-get install -y ca-certificates wget gnupg curl libxtst6
 
 # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
