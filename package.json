@@ -4,7 +4,7 @@
   "description": "Using Express and Puppeteer to take screenshot of an URL and produce the image",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "helmet": "^4.6.0",
     "puppeteer": "^10.0.0",
     "validator": "^13.6.0"
